@@ -1,36 +1,9 @@
-raw_html = "www.pccomponentes.com"
-<h1> Web Scrapping <h1>
-<ul> class="Lista de moviles"</ul>
-    <li class="Moviles">
-        <div class="Titulos de los Moviles">
-            Xiaomi
-        </div> 
-        <div class="Informacion de los datos">
-            <span class="phone-make">Xiaomi</span>
-            <span class="phone-model">Redmi</span>
-            <span class="phone-build">2019</span>
-        </div>
-        <div class="ventas-price">
-            € <span class="phone-price">100,—</span>
-        </div>
-    </li>
-</ul>
+# almacenamos la url en una variable
+url = 'https://www.pccomponentes.com/'
 
-# Analizar sintácticamente el texto fuente HTML guardado en raw_html
-html = BeautifulSoup(raw_html, 'html.parser')
+# peticion para abrir la url
+ourUrl=urllib.request.urlopen(url)
 
-# Extraer el contenido de la etiqueta con la clase 'car-title' 
-phone_title = html.find(class_ = 'phone-title').text.strip()
-
-# Si el movil en cuestión resulta ser un Xiaomi Redmi
-if (phone_title == 'Xiaomi Redmi'):
-
-    # Subir del título del movil a la siguiente etiqueta de elemento de lista <li></li>
-    html.find_parent('li')
-    
-    # Determinar el precio del coche
-    phone_price = html.find(class_ = 'phone-price').text.strip()
-    
-    # Mostrar el precio del coche
-    print(phone_price)
+# Analizamos la pagina con BeautifulShop
+soup=BeautifulSoup(ourUrl,'html.parser')
 
