@@ -1,14 +1,11 @@
 # importamos bibliotecas
-from bs4 import BeautifulShop
-import urllib.request
+from bs4 import BeautifulSoup
+import request
+import pandas as pd
 
 # almacenamos la url en una variable
-url = 'https://www.pccomponentes.com/'
+url = 'https://www.pccomponentes.com/buscar/?query=xiaomi'
+page = request.get(url)
+soup = BeautifulSoup(page.content, 'html.parser')
 
-# peticion para abrir la url
-ourUrl=urllib.request.urlopen(url)
-
-# Analizamos la pagina con BeautifulShop
-soup=BeautifulSoup(ourUrl,'html.parser')
-
-print(soup.prettify())
+#Moviles    
