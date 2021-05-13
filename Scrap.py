@@ -1,15 +1,43 @@
 # importamos bibliotecas
 from bs4 import BeautifulSoup
-import request
+import requests
 import pandas as pd
 
 # almacenamos la url en una variable
 url = 'https://resultados.as.com/resultados/futbol/primera/clasificacion/'
-page = request.get(url)
+page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
-#Equipos    
+#Equipos
 
 eq = soup.find_all('span', class_="nombre-equipo")
 
-print(eq)
+equipos = list()
+
+count = 0
+for i in eq:
+    if count < 20:
+        equipos.append(i.text)
+    else:
+        break
+    count += 1
+
+print(equipos, len(equipos) )
+
+#Puntos
+
+pt = soup.find_all('td', class_="destacado")
+
+puntos = list()
+
+count = 0
+for i in pt:
+    if count < 20:
+        puntos.append(i.text)
+    else:
+        break
+    count += 1
+
+print(puntos)
+
+df = pd.DataFrame({'Nombre': Equipos, 'Puntos' :puntos})
