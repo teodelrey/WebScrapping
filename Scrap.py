@@ -40,4 +40,7 @@ for i in pt:
 
 print(puntos)
 
-df = pd.DataFrame({'Nombre': Equipos, 'Puntos' :puntos})
+df = pd.DataFrame({'Nombre': equipos, 'puntos' :puntos}, index=list(range(1,21)))
+print(df)
+
+df.to_csv('Clasificacion.csv', index=False)
